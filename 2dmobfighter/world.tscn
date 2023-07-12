@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://durof37e08f3p"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_c5tyf"]
+[ext_resource type="PackedScene" uid="uid://cjgvu61xepkrj" path="res://player.tscn" id="1_t32wj"]
+
+[node name="World" type="CanvasGroup"]
+script = ExtResource("1_c5tyf")
+
+[node name="Player" parent="." instance=ExtResource("1_t32wj")]
+position = Vector2(951, 572)
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 21.0
+offset_top = 28.0
+offset_right = 127.0
+offset_bottom = 59.0
+scale = Vector2(3, 3)
+button_pressed = true
+text = "Hostile"
+
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
+[connection signal="button_down" from="CheckButton" to="." method="_on_check_button_button_down"]
+[connection signal="button_up" from="CheckButton" to="." method="_on_check_button_button_up"]
